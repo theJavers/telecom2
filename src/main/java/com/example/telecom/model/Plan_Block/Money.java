@@ -1,4 +1,4 @@
-package com.example.telecom;
+package com.example.telecom.model.Plan_Block;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
