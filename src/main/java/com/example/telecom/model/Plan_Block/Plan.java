@@ -1,18 +1,16 @@
 package com.example.telecom.model.Plan_Block;
 
-import com.example.telecom.model.Plan_Block.Money;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-abstract class Plan {
+public class Plan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private String planId;
     private Integer maxMinuts;
     private Integer maxMessages;
     private Money monthlyRate;
@@ -21,7 +19,7 @@ abstract class Plan {
     private Money overMessagesFee;
 
     public Plan(String id, Integer maxMinuts, Integer maxMessages, Money monthlyRate, Money longDistanceRate, Money overMinutesFee, Money overMessagesFee) {
-        this.id = id;
+        this.planId = id;
         this.maxMinuts = maxMinuts;
         this.maxMessages = maxMessages;
         this.monthlyRate = monthlyRate;
