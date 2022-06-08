@@ -1,9 +1,19 @@
 package com.example.telecom.model.User_Block;
 
+import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
 public class Address {
     private String streetAddress;
     private String city;
     private String country;
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private int postalCode;
 
     public Address() {
