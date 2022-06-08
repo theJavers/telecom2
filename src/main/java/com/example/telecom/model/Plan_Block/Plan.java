@@ -3,6 +3,7 @@ package com.example.telecom.model.Plan_Block;
 import com.example.telecom.model.Account_Block.Account;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public abstract class Plan {
@@ -45,30 +46,29 @@ public abstract class Plan {
     })
     private Money overMessagesFee;
 
-    @ManyToOne
+    @OneToMany (mappedBy = "plan")
+    private List<Account> accounts;
 
-    private Account account;
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public Plan(String id, Integer maxMinuts, Integer maxMessages, Money monthlyRate, Money longDistanceRate, Money overMinutesFee, Money overMessagesFee) {
-        this.planId = id;
+    public Plan(Integer maxMinuts, Integer maxMessages, Money monthlyRate, Money longDistanceRate, Money overMinutesFee, Money overMessagesFee, List<Account> accounts) {
         this.maxMinuts = maxMinuts;
         this.maxMessages = maxMessages;
         this.monthlyRate = monthlyRate;
         this.longDistanceRate = longDistanceRate;
         this.overMinutesFee = overMinutesFee;
         this.overMessagesFee = overMessagesFee;
+        this.accounts = accounts;
     }
 
-    public Plan () {
+    public Plan() {
+    }
 
+    public String getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(String planId) {
+        this.planId = planId;
     }
 
     public Integer getMaxMinuts() {
@@ -119,5 +119,11 @@ public abstract class Plan {
         this.overMessagesFee = overMessagesFee;
     }
 
+    public List<Account> getAccounts() {
+        return accounts;
+    }
 
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 }

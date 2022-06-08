@@ -6,33 +6,40 @@ import org.hibernate.boot.model.source.spi.PluralAttributeNature;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Entity
-@Table(name="account")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accountId;
     @Enumerated
     private Status status;
-    private Map<User, String> userPhoneMap;
+    @ManyToMany
+    @JoinTable(name = "account_users")
+    private List<User> users;
    @OneToOne
     private User primaryUser;
    @ManyToOne
    @JoinColumn(name="plan_id")
-   private Plan plan;
+    private Plan plan;
 
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User user;
-
-    public Account(){}
-
-    public Account(Status status, Map<User, String> userPhoneMap, User primaryUser, Plan plan) {
+    public Account(Status status, List<User> users, User primaryUser, Plan plan) {
         this.status = status;
-        this.userPhoneMap = userPhoneMap;
+        this.users = users;
         this.primaryUser = primaryUser;
         this.plan = plan;
+    }
+
+    public Account(){
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public Status getStatus() {
@@ -43,12 +50,12 @@ public class Account {
         this.status = status;
     }
 
-    public Map<User, String> getUserPhoneMap() {
-        return userPhoneMap;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserPhoneMap(Map<User, String> userPhoneMap) {
-        this.userPhoneMap = userPhoneMap;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public User getPrimaryUser() {

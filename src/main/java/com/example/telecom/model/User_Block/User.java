@@ -12,10 +12,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private String name;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "street", column = @Column(name ="street_shipping")),
+            @AttributeOverride(name = "city", column = @Column(name ="city_shipping")),
+            @AttributeOverride(name = "country", column = @Column(name = "country_shipping"))
+    })
+    @AssociationOverrides({
+            @AssociationOverride(name = "postalCode", joinColumns = @JoinColumn(name ="postalCode_id_Shipping")),
+    })
     private Address shippingAddress;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "street", column = @Column(name ="street_billing")),
+            @AttributeOverride(name = "city", column = @Column(name ="city_billing")),
+            @AttributeOverride(name = "country", column = @Column(name = "country_billing"))
+    })
+    @AssociationOverrides({
+            @AssociationOverride(name = "postalCode", joinColumns = @JoinColumn(name ="postalCode_id_Billing")),
+    })
     private Address billingAddress;
     private String phoneNumber;
-    @OneToMany(mappedBy = "user")
+    @ManyToMany(mappedBy = "users")
     private List<Account> accounts;
 
     public User(){}
@@ -25,6 +43,54 @@ public class User {
         this.shippingAddress = shippingAddress;
         this.billingAddress = billingAddress;
         this.phoneNumber = phoneNumber;
+        this.accounts = accounts;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Address getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
 }
