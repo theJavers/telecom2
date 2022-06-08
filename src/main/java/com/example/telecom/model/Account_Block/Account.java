@@ -18,7 +18,7 @@ public class Account {
     private Map<User, String> userPhoneMap;
    @OneToOne
     private User primaryUser;
-   @OneToOne
+   @ManyToOne
    @JoinColumn(name="plan_id")
    private Plan plan;
 
