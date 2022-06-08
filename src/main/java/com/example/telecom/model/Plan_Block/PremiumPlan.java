@@ -16,6 +16,7 @@ public class PremiumPlan extends Plan {
         this.overDataFee = overDataFee;
     }
 
+
     public PremiumPlan() {
 
     }
@@ -36,8 +37,5 @@ public class PremiumPlan extends Plan {
         this.overDataFee = overDataFee;
     }
 
-    @Override
-    public void setLongDistanceRate(Money longDistanceRate) {
-        super.setLongDistanceRate(longDistanceRate);
-    }
+
 }
