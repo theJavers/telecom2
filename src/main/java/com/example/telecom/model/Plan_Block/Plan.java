@@ -51,14 +51,14 @@ public abstract class Plan {
     private List<Account> accounts;
 
 
-    public Plan(Integer maxMinuts, Integer maxMessages, Money monthlyRate, Money longDistanceRate, Money overMinutesFee, Money overMessagesFee, List<Account> accounts) {
+    public Plan(Integer maxMinuts, Integer maxMessages, Money monthlyRate, Money longDistanceRate, Money overMinutesFee, Money overMessagesFee) {
         this.maxMinuts = maxMinuts;
         this.maxMessages = maxMessages;
         this.monthlyRate = monthlyRate;
         this.longDistanceRate = longDistanceRate;
         this.overMinutesFee = overMinutesFee;
         this.overMessagesFee = overMessagesFee;
-        this.accounts = accounts;
+        //this.accounts = accounts;
     }
 
     public Plan() {

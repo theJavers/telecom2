@@ -2,17 +2,19 @@ package com.example.telecom.model.Plan_Block;
 
 import com.example.telecom.model.Account_Block.Account;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import java.util.List;
-@PrimaryKeyJoinColumn(name = "id_standard")
-
+@Entity
 public class StandardPlan extends Plan{
 
     private Integer maxData;
+    @Embedded
     private Money overDataFee;
 
-    public StandardPlan(Integer maxMinuts, Integer maxMessages, Money monthlyRate, Money longDistanceRate, Money overMinutesFee, Money overMessagesFee, List<Account> accounts, Integer maxData, Money overDataFee) {
-        super(maxMinuts, maxMessages, monthlyRate, longDistanceRate, overMinutesFee, overMessagesFee, accounts);
+    public StandardPlan(Integer maxMinuts, Integer maxMessages, Money monthlyRate, Money longDistanceRate, Money overMinutesFee, Money overMessagesFee,  Integer maxData, Money overDataFee) {
+        super(maxMinuts, maxMessages, monthlyRate, longDistanceRate, overMinutesFee, overMessagesFee);
         this.maxData = maxData;
         this.overDataFee = overDataFee;
     }
