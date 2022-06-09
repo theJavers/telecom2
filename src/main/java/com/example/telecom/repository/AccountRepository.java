@@ -19,6 +19,6 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query(
             value = "SELECT status, COUNT(status) FROM account WHERE status = :status GROUP BY status",
             nativeQuery = true)
-    List<Object> findCountofAccountsByStatus(@Param("status") String status);
+    Object findCountofAccountsByStatus(@Param("status") String status);
 
 }

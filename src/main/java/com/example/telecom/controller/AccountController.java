@@ -29,7 +29,7 @@ public class AccountController {
 
     @GetMapping("accounts-status/")
     @ResponseStatus(HttpStatus.OK)
-    public List<Object> findNumberOfAccountsByStatus(@RequestParam String status){
+    public Object findNumberOfAccountsByStatus(@RequestParam String status){
         return accountRepository.findCountofAccountsByStatus(status);
     }
 
