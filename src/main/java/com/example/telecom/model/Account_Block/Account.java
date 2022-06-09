@@ -12,7 +12,7 @@ import java.util.Map;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int accountId;
+    private Integer accountId;
     @Enumerated
     private Status status;
     @ManyToMany
@@ -34,11 +34,13 @@ public class Account {
     public Account(){
     }
 
-    public int getAccountId() {
+
+
+    public Integer getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
+    public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 

@@ -9,29 +9,32 @@ import javax.persistence.ManyToOne;
 
 @Embeddable
 public class Address {
-    private String streetAddress;
+
+
+    private String street;
     private String city;
     private String country;
     @ManyToOne
     @JoinColumn(nullable = false)
-    private int postalCode;
+    private PostalCode postalCode;
+
 
     public Address() {
     }
 
-    public Address(String streetAddress, String city, String country, int postalCode) {
-        this.streetAddress = streetAddress;
+    public Address(String street, String city, String country, PostalCode postalCode) {
+        this.street = street;
         this.city = city;
         this.country = country;
         this.postalCode = postalCode;
     }
 
     public String getStreetAddress() {
-        return streetAddress;
+        return street;
     }
 
     public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
+        this.street = streetAddress;
     }
 
     public String getCity() {
@@ -50,11 +53,19 @@ public class Address {
         this.country = country;
     }
 
-    public int getPostalCode() {
+    public PostalCode getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(PostalCode postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 }

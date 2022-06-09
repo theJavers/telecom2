@@ -6,11 +6,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Plan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String planId;
+    private Long planId;
     private Integer maxMinuts;
     private Integer maxMessages;
     @Embedded
@@ -63,11 +64,13 @@ public abstract class Plan {
     public Plan() {
     }
 
-    public String getPlanId() {
+
+
+    public Long getPlanId() {
         return planId;
     }
 
-    public void setPlanId(String planId) {
+    public void setPlanId(Long planId) {
         this.planId = planId;
     }
 
