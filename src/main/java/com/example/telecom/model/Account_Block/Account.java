@@ -13,7 +13,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer accountId;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Status status;
     @ManyToMany
     @JoinTable(name = "account_users")
@@ -24,9 +24,9 @@ public class Account {
    @JoinColumn(name="plan_id")
     private Plan plan;
 
-    public Account(Status status, List<User> users, User primaryUser, Plan plan) {
+    public Account(Status status, User primaryUser, Plan plan) {
         this.status = status;
-        this.users = users;
+        //this.users = users;
         this.primaryUser = primaryUser;
         this.plan = plan;
     }
