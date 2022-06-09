@@ -1,6 +1,7 @@
 package com.example.telecom.model.User_Block;
 
 import com.example.telecom.model.Account_Block.Account;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,23 +11,26 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Integer userId;
     private String name;
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "street", column = @Column(name ="street_shipping")),
             @AttributeOverride(name = "city", column = @Column(name ="city_shipping")),
-            @AttributeOverride(name = "country", column = @Column(name = "country_shipping"))
+            @AttributeOverride(name = "country", column = @Column(name = "country_shipping")),
+            //@AttributeOverride(name = "postalCode", column = @Column(name = "postalCode_id_shipping"))
     })
     @AssociationOverrides({
             @AssociationOverride(name = "postalCode", joinColumns = @JoinColumn(name ="postalCode_id_Shipping")),
     })
+
     private Address shippingAddress;
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "street", column = @Column(name ="street_billing")),
             @AttributeOverride(name = "city", column = @Column(name ="city_billing")),
-            @AttributeOverride(name = "country", column = @Column(name = "country_billing"))
+            @AttributeOverride(name = "country", column = @Column(name = "country_billing")),
+            //@AttributeOverride(name = "postalCode", column = @Column(name = "postalCode_id_billing"))
     })
     @AssociationOverrides({
             @AssociationOverride(name = "postalCode", joinColumns = @JoinColumn(name ="postalCode_id_Billing")),
@@ -34,6 +38,7 @@ public class User {
     private Address billingAddress;
     private String phoneNumber;
     @ManyToMany(mappedBy = "users")
+    @JsonIgnore
     private List<Account> accounts;
 
     public User(){}
@@ -46,11 +51,11 @@ public class User {
         this.accounts = accounts;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

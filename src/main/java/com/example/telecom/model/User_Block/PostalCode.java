@@ -9,6 +9,14 @@ public class PostalCode {
     private Long id;
     private String postalCode;
 
+    public PostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public PostalCode() {
+    }
+
+
     public String getPostalCode() {
         return postalCode;
     }

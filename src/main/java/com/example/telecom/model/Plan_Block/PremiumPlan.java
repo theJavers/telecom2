@@ -3,9 +3,12 @@ package com.example.telecom.model.Plan_Block;
 import com.example.telecom.model.Account_Block.Account;
 import com.example.telecom.model.Plan_Block.Money;
 
+import javax.persistence.Inheritance;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.math.BigDecimal;
 import java.util.List;
 
+@PrimaryKeyJoinColumn(name = "id_premium")
 public class PremiumPlan extends Plan {
 
     private Integer maxData;
