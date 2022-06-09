@@ -2,9 +2,11 @@ package com.example.telecom.model.Account_Block;
 
 import com.example.telecom.model.Plan_Block.Plan;
 import com.example.telecom.model.User_Block.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.boot.model.source.spi.PluralAttributeNature;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +17,18 @@ public class Account {
     private Integer accountId;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @ManyToMany
-    @JoinTable(name = "account_users")
-    private List<User> users;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JsonIgnore
+    @JoinTable(
+            name = "users_account",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "account_id") }
+    )
+    private List<User> users = new ArrayList<>();
    @OneToOne
     private User primaryUser;
    @ManyToOne
+   @JsonIgnore
    @JoinColumn(name="plan_id")
     private Plan plan;
 
@@ -33,6 +41,19 @@ public class Account {
 
     public Account(){
     }
+
+    ///////////////////////////
+    public void addUser(User user){
+        users.add(user);
+    }
+
+    ///////////////////////////
+
+
+
+
+
+
 
 
 

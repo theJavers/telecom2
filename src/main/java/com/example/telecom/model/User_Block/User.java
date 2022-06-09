@@ -4,6 +4,7 @@ import com.example.telecom.model.Account_Block.Account;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -38,11 +39,11 @@ public class User {
     private String phoneNumber;
     @ManyToMany(mappedBy = "users")
     @JsonIgnore
-    private List<Account> accounts;
+    private List<Account> accounts = new ArrayList<>();
 
     public User(){}
 
-    public User(String name, Address shippingAddress, Address billingAddress, String phoneNumber, List<Account> accounts) {
+    public User(String name, Address shippingAddress, Address billingAddress, String phoneNumber) {
         this.name = name;
         this.shippingAddress = shippingAddress;
         this.billingAddress = billingAddress;
@@ -50,9 +51,17 @@ public class User {
         this.accounts = accounts;
     }
 
-    public Integer getUserId() {
-        return userId;
+
+    /////////////
+    public void addAccount(Account account){
+        accounts.add(account);
     }
+    /////////////
+
+
+
+
+    public Integer getUserId() { return userId; }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
